@@ -8,7 +8,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use('/images',express.static('images'));
+app.use(express.static(__dirname));
 
 app.post('/del',(req,res) =>{
     var name = req.body.name;
@@ -64,7 +64,7 @@ app.post('/', (req, res) => {
         }
         catch(e){
             console.log(e);
-            res.send("failed");
+            res.send(false);
 
         }  
 
