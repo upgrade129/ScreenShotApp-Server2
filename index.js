@@ -38,7 +38,10 @@ app.post('/', (req, res) => {
     }
 
     (async () => {
-        const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox','--disable-setuid-sandbox']
+          })
         const page = await browser.newPage();
         try{
             await page.goto('https://example.com');
