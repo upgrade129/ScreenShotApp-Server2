@@ -47,7 +47,7 @@ app.post('/', (req, res) => {
             await page.goto(url);
             await page.setViewport(viewportValue);
             var path = __dirname+'/images/example.png'
-            await page.screenshot({ path: '/images/example.png'});
+            await page.screenshot({ path: './images/example.png'});
             await browser.close();
             res.send("/images/example.png");
         }
