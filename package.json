@@ -12,6 +12,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
     "path": "^0.12.7",
     "puppeteer": "^8.0.0"
   }

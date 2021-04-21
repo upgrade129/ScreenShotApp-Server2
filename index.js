@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 const puppeteer = require('puppeteer');
-const path = require('path');
+var fs = require('fs');
 
 app.use(cors());
 
@@ -10,12 +10,24 @@ app.use(express.json());
 
 app.use('/images',express.static('images'));
 
+app.post('/del',(req,res) =>{
+    var name = req.body.name;
+    console.log(name);
+    fs.unlink(name, (err) => {
+        if (err) throw err;
+        console.log('deleted');
+        res.send("deleted")
+      });
+})
+
 app.post('/', (req, res) => {
     console.log(req.body);
     var url = req.body.url;
     var viewport = req.body.viewport
     console.log("url",url);
-
+    var random = Math.floor((Math.random() * 100) + 1);
+    var name = `${random}.png`
+    console.log(name);
     switch(viewport){
         case "desktop":
             var viewportValue = {
@@ -46,11 +58,9 @@ app.post('/', (req, res) => {
         try{
             await page.goto(url);
             await page.setViewport(viewportValue);
-            
-            const index = path.join(__dirname, 'images', 'example.png');
-            await page.screenshot({ path: index});
+            await page.screenshot({ path: name});
             await browser.close();
-            res.send("/images/example.png");
+            res.send(name);
         }
         catch(e){
             console.log(e);
