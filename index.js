@@ -18,19 +18,19 @@ app.post('/', (req, res) => {
 
     switch(viewport){
         case "desktop":
-            var options = {
+            var viewportValue = {
                 width : 1280,
                 height : 950
             }
             break;
         case "Tab":
-            var options = {
+            var viewportValue = {
                 width : 768,
                 height : 1024
             }
             break;
         case "Mobile":
-            var options = {
+            var viewportValue = {
                 width : 360,
                 height : 640
             }
@@ -44,10 +44,11 @@ app.post('/', (req, res) => {
           })
         const page = await browser.newPage();
         try{
-            await page.goto('https://example.com');
-            await page.screenshot({ path: 'example.png' });
+            await page.goto(url);
+            await page.setViewport(viewportValue);
+            await page.screenshot({ path: './images/example.png' });
             await browser.close();
-            res.send("done");
+            res.send("./images/example.png");
         }
         catch(e){
             console.log(e);
