@@ -1,4 +1,4 @@
-# ScreenShotApp -- ##Backend
+# ScreenShotApp -- Backend
   This is the backend server for the [Screenshot App](https://github.com/upgrade129/ScreenShotApp-Client) Which was build using react. This was purely build on Node and ExpressJS.
 
 ### NODE and Expressjs
