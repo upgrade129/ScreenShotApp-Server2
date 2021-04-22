@@ -14,9 +14,13 @@ app.post('/del',(req,res) =>{
     var name = req.body.name;
     console.log(name);
     fs.unlink(name, (err) => {
-        if (err) throw err;
+        if (err){
+            console.log(err);
+            res.send("error in deletion");
+        } 
+            
         console.log('deleted');
-        res.send("deleted")
+        res.send("deleted");
       });
 })
 
@@ -50,12 +54,12 @@ app.post('/', (req, res) => {
     }
 
     (async () => {
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox','--disable-setuid-sandbox']
-          })
-        const page = await browser.newPage();
         try{
+            const browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox','--disable-setuid-sandbox']
+              })
+            const page = await browser.newPage();
             await page.goto(url);
             await page.setViewport(viewportValue);
             await page.screenshot({ path: name});
