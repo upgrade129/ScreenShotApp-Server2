@@ -33,19 +33,19 @@ app.post('/', (req, res) => {
     var name = `${random}.png`
     console.log(name);
     switch(viewport){
-        case "desktop":
+        case "DESKTOP":
             var viewportValue = {
                 width : 1280,
                 height : 950
             }
             break;
-        case "Tab":
+        case "TAB":
             var viewportValue = {
                 width : 768,
                 height : 1024
             }
             break;
-        case "Mobile":
+        case "MOBILE":
             var viewportValue = {
                 width : 360,
                 height : 640
